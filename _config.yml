@@ -99,5 +99,5 @@ theme: cactus
 ## Docs: https://hexo.io/docs/deployment.html
 deploy:
   type: git
-  repo: https://github.com/zthust/zt.blog.git
+  repo: https://github.com/zthust/zthust.github.io.git
   branch: master
