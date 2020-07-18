@@ -1,7 +1,3 @@
----
-title: Hexo introuduction
----
-
 # 部署hexo个人博客
 ## 1. 安装hexo
 
@@ -76,4 +72,32 @@ jobs:
 
 当本地push到dev分支时，会将public目录更新到master分支上。
 
+### 5. 增加编辑功能
 
+在cactus的layout目录中，修改post.ejs模板
+例如hexo.md，通过查看hexo主页的Docs，变量page.source为_posts/hexo.md
+```
+<article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    <%- partial('_partial/post/title', { post: page, index: false, class_name: 'posttitle' }) %>
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name"><% if (page.author) { %><%- page.author %><% } else { %><%- config.title %><% } %></span>
+      </span>
+      <%- partial('_partial/post/date', { post: page, class_name: 'postdate' }) %>
+      <%- partial('_partial/post/category') %>
+      <%- partial('_partial/post/tag') %>
+    </div>
+  </header>
+  <%- partial('_partial/post/gallery') %>
+  <div class="content" itemprop="articleBody">
+    <%- page.content %>
+  </div>
+
+  <div style="float: right;">
+  <a href="https://github.com/zthust/zthust.github.io/edit/dev/source/<%- page.source %>" target="_blank">编辑</a>
+</div>
+</article>
+<%- partial('_partial/comments') %>
+
+```
